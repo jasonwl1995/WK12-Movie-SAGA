@@ -103,6 +103,9 @@ function* addMovie(action) {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
+
+// - - - - REDUCERS - - - -
+
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
     switch (action.type) {
@@ -123,11 +126,23 @@ const genres = (state = [], action) => {
     }
 }
 
+// Used to store the chosen movie details from server
+const details = (state = {}, action) => {
+  switch (action.type) {
+      case 'SET_DETAILS':
+          return action.payload;
+      default:
+          return state;
+  }
+}
+
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        details,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
