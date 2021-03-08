@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import './MovieList.css';
 
 function MovieList() {
-
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
     const history = useHistory();
@@ -29,7 +28,6 @@ function MovieList() {
                 })}
             </section>
         </main>
-
     );
 }
 

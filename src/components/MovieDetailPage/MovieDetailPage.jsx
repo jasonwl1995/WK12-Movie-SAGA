@@ -6,7 +6,6 @@ function MovieDetailPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
-  const movieId = params;
 
   // data from redux
   const details = useSelector(store => store.details);
@@ -16,7 +15,7 @@ function MovieDetailPage() {
   useEffect(() => {
     dispatch({
       type: 'FETCH_DETAILS',
-      payload: movieId,
+      payload: params,
     });
   }, []);
 
@@ -39,7 +38,7 @@ function MovieDetailPage() {
         <div></div>
       )}
 
-      <button onClick = {() => history.push('/')}>Back to Home</button>
+      <button onClick = {() => history.push('/')}>Back to List</button>
     </div>
   );
 }
