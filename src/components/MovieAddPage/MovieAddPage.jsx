@@ -24,13 +24,14 @@ function MovieAddPage() {
 
   const addMovie = (evt) => {
     evt.preventDefault();
+    console.log('addmovie log', movieGenre);
     dispatch({
       type: 'ADD_MOVIE',
       payload: {
         title: movieTitle,
         poster: moviePoster,
         description: movieDescription,
-        genre: movieGenre,
+        genre_id: movieGenre,
       }
     })
     history.push('/');
@@ -113,7 +114,6 @@ function MovieAddPage() {
               <Link to="/">Cancel</Link>
             </td>
           </tr>
-
 
         </table>
       </form>
