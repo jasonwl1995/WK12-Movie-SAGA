@@ -22,11 +22,18 @@ function MovieAddPage() {
   }, []);
 
 
-  function addMovie() {
-
-
-
-
+  const addMovie = (evt) => {
+    evt.preventDefault();
+    dispatch({
+      type: 'ADD_MOVIE',
+      payload: {
+        title: movieTitle,
+        poster: moviePoster,
+        description: movieDescription,
+        genre: movieGenre,
+      }
+    })
+    history.push('/');
   };
 
   return (
