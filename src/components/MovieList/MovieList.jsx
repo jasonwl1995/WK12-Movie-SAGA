@@ -10,18 +10,20 @@ function MovieList() {
     const history = useHistory();
 
     useEffect(() => {
-        dispatch({ type: 'FETCH_MOVIES' });
+        dispatch({ 
+          type: 'FETCH_MOVIES' });
     }, []);
 
     return (
         <main>
-            <h1>MovieList</h1>
+            <h1>Movie List</h1>
             <section className="movies">
-                {movies.map(movie => {
+                {movies.map((movie) => {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title} onClick={() => history.push(`/movie/${movie.id}`)}/>
+                            <img src={movie.poster} alt={movie.title} 
+                            onClick={() => history.push(`/details/${movie.id}`)}/>
                         </div>
                     );
                 })}

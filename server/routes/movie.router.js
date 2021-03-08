@@ -23,9 +23,9 @@ router.get('/', (req, res) => {
 // MovieDetailPage GET route
 // Grabs Movie details to display
 
-router.get('/id', (req, res) => {
+router.get('/:id', (req, res) => {
   const movieId = req.params.id;
-  const sqlText = `SELECT "movies".id, "movies".title, "movies".poster, "movies".description, ARRAY_AGG("genres".name) FROM "movies_genre"
+  const sqlText = `SELECT "movies".id, "movies".title, "movies".poster, "movies".description, ARRAY_AGG("genres".name) FROM "movies_genres"
                    JOIN "movies" ON "movies_genres".movie_id = "movies".id
                    JOIN "genres" ON "movies_genres".genre_id = "genres".id
                    WHERE "movies".id = $1

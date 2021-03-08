@@ -23,7 +23,7 @@ function* fetchAllMovies() {
     // get all movies from the DB
     try {
         const movies = yield axios.get('/api/movie');
-        console.log('get all:', movies.data);
+        console.log('get all movies:', movies.data);
         yield put({ type: 'SET_MOVIES', payload: movies.data });
 
     } catch {
@@ -35,7 +35,7 @@ function* fetchAllGenres() {
   // get all genres from the DB
   try {
       const genres = yield axios.get('/api/genre');
-      console.log('get all:', genres.data);
+      console.log('get all genre:', genres.data);
       yield put({ 
         type: 'SET_GENRES',
         payload: genres.data,
@@ -59,8 +59,9 @@ function* fetchAllGenres() {
 function* fetchMovieDetails(action) {
   // get movie details from the DB
   try {
+    console.log('get details:', action);
       const details = yield axios.get(`/api/movie/${action.payload.id}`);
-      console.log('get all:', details.data);
+      console.log('get details:', details.data);
       yield put({ 
         type: 'SET_DETAILS',
         payload: details.data,

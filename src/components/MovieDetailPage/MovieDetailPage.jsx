@@ -20,20 +20,26 @@ function MovieDetailPage() {
     });
   }, []);
 
+  console.log( "details", details);
   return (
     <div>
-      <h2>{movie.title}</h2>
-      <img scr={movie.poster} alt={movie.title} />
-      <p>{movie.description}</p>
+      <h2>{details.title}</h2>
+      <img scr={details.poster} alt={details.title} />
+      <p>{details.description}</p>
+      
+      {details.array_agg ? (
       <span>
-        {movie.genre.map((genre) => {
+        {details.array_agg.map((genre) => {
           return (
-            <p>{genre + ', '}</p>
+            <p>{genre}</p>
           );
         })}
       </span>
+      ) : (
+        <div></div>
+      )}
 
-      <button onClick={() => history.push('/')}>Back to Home</button>
+      <button onClick = {() => history.push('/')}>Back to Home</button>
     </div>
   );
 }
