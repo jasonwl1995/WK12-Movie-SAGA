@@ -24,7 +24,7 @@ function MovieDetailPage() {
   return (
     <div>
       <h2>{details.title}</h2>
-      <img scr={details.poster} alt={details.title} />
+      <img src={details.poster} alt={details.title} />
       <p>{details.description}</p>
       
       {details.array_agg ? (
