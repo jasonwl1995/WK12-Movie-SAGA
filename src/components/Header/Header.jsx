@@ -5,7 +5,7 @@ import './Header.css';
 function Header() {
   return (
     <div id="banner">
-      <h1>Movies Saga</h1>
+      <h1>The Movies Saga!</h1>
       <nav>
         <span>
           <Link to="/" className="navigation">

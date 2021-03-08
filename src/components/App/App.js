@@ -8,11 +8,12 @@ import MovieAddPage from '../MovieAddPage/MovieAddPage';
 import MovieDetailPage from '../MovieDetailPage/MovieDetailPage';
 
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <h1>The Movies Saga!</h1>
       <Router>        
+      <Header />
+
         <Route path="/" exact>
           <MovieList />
         </Route>
