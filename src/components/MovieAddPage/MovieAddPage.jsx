@@ -15,23 +15,49 @@ function MovieAddPage() {
   const [movieDescription, setMovieDescription] = useState('');
   const [movieGenre, setMovieGenre] = useState('');
 
-
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_GENRES'
+    });
+  }, []);
 
   return (
-    <div id="banner">
-      <h1>The Movies Saga!</h1>
-      <nav>
-        <span>
-          <Link to="/" className="navigation">
-            Movies
-          </Link>
-        </span>
-        <span>
-          <Link to="/addMovie" className="navigation">
-            Add a Movie
-          </Link>
-        </span>
-      </nav>
+    <div>
+      <h3>Add a Movie</h3>
+      <form onSubmit={addMovie}>
+        <label htmlFor="movieTitle">Movie Title:</label>
+        <input
+        name="movieTitle"
+        type="text"
+        placeholder="Movie Title"
+        value={movieTitle}
+        onChange={(evt) => setMovieTitle(evt.target.value)}
+        />
+
+        <label htmlFor="moviePoster">Movie Poster URL:</label>
+        <input
+        name="moviePoster"
+        type="text"
+        placeholder="Movie Poster URL"
+        value={moviePoster}
+        onChange={(evt) => setMoviePoster(evt.target.value)}
+        />
+
+        <label htmlFor="movieDescription">Movie Description:</label>
+        <input
+        name="movieDescription"
+        type="textarea"
+        placeholder="Movie Title"
+        value={movieTitle}
+        onChange={(evt) => setMovieTitle(evt.target.value)}
+        />
+
+        <input
+        type="textarea"
+        placeholder="Movie Description..."
+        />
+
+      </form>
     </div>
   );
 }
