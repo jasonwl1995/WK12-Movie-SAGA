@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+
+// GET route for movies, 
+// returns movies by ascending titles names from database
+
 router.get('/', (req, res) => {
 
   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
@@ -15,6 +19,27 @@ router.get('/', (req, res) => {
     })
 
 });
+
+// MovieDetailPage GET route
+// Grabs Movie details to display
+
+router.get('/id', (req, res) => {
+  const movieId = req.params.id;
+  const sqlText = ``
+
+  pool.query(sqlText, [movieId])
+      .then((dbRes) => {
+        res.send(dbRes.rows[0]);
+      })
+      .catch((err) => {
+        console.log('Error Getting query from Database', err);
+        res.sendStatus(500);
+      })
+});
+
+
+// MovieAddPage, POST route for users to
+// add a new movie to the database
 
 router.post('/', (req, res) => {
   console.log(req.body);
@@ -37,7 +62,8 @@ router.post('/', (req, res) => {
       VALUES  ($1, $2);
       `
       // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
-      pool.query(insertMovieGenreQuery, [createdMovieId, req.body.genre_id]).then(result => {
+      pool.query(insertMovieGenreQuery, [createdMovieId, req.body.genre_id])
+      .then(result => {
         //Now that both are done, send back success!
         res.sendStatus(201);
       }).catch(err => {
