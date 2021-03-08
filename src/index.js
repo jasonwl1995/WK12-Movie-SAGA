@@ -70,6 +70,36 @@ function* fetchMovieDetails(action) {
   }
 } // end fetchMovieDetails
 
+function* addMovie(action) {
+  // POST new Movie to DB
+  try {
+      yield axios.post(`/api/movie/`, action.payload);
+      console.log('In addMovie:', action.payload);
+      yield put({ 
+        type: 'FETCH_MOVIES',
+      });
+  } catch(err) {
+      console.log('Adding new movie to DB error', err);
+  }
+} // end addMovie
+
+// function* addFavorite(action) {
+//   console.log('in addFavorite', action.payload);
+
+//   // post favorite to database
+//   try {
+//     yield axios.post(`/api/favorite/`, action.payload); // this is the url from the user clicking the fav button.
+
+//     // update favoriteReducer
+//     yield put({
+//       // put is dispatching the information to be grabbed by whoever.
+//       type: 'FETCH_FAVORITES', // this is being caught by RootSaga which is then being sent to function fetchFavorites()
+//     });
+//   } catch (err) {
+//     console.log('Error in Fav post', err);
+//   }
+// } // end addFavorite
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
