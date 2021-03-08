@@ -3,3 +3,9 @@
   margin: 0px;
   padding: 30px;
 }
+
+.navigation {
+  text-decoration: none;
+  margin: 10px;
+  color: #1dd3b0;
+}

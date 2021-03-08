@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { generatePath, useHistory, Link } from 'react-router-dom';
 
 function MovieAddPage() {
   const dispatch = useDispatch();
@@ -21,43 +21,96 @@ function MovieAddPage() {
     });
   }, []);
 
+
+  function addMovie() {
+
+
+
+
+  };
+
   return (
     <div>
       <h3>Add a Movie</h3>
       <form onSubmit={addMovie}>
-        <label htmlFor="movieTitle">Movie Title:</label>
-        <input
-        name="movieTitle"
-        type="text"
-        placeholder="Movie Title"
-        value={movieTitle}
-        onChange={(evt) => setMovieTitle(evt.target.value)}
-        />
+        <table>
+          <tr>
+            <td>
+              <label htmlFor="movieTitle">Movie Title: </label>
+            </td>
+            <td>
+              <input
+              name="movieTitle"
+              type="text"
+              placeholder="Movie Title"
+              value={movieTitle}
+              onChange={(evt) => setMovieTitle(evt.target.value)}
+              />
+            </td>
+          </tr>
 
-        <label htmlFor="moviePoster">Movie Poster URL:</label>
-        <input
-        name="moviePoster"
-        type="text"
-        placeholder="Movie Poster URL"
-        value={moviePoster}
-        onChange={(evt) => setMoviePoster(evt.target.value)}
-        />
+          <tr>
+            <td>
+              <label htmlFor="moviePoster">Movie Poster URL: </label>
+            </td>
+            <td>
+              <input
+              name="moviePoster"
+              type="text"
+              placeholder="Movie Poster URL"
+              value={moviePoster}
+              onChange={(evt) => setMoviePoster(evt.target.value)}
+              />
+            </td>
+          </tr>
 
-        <label htmlFor="movieDescription">Movie Description:</label>
-        <input
-        name="movieDescription"
-        type="textarea"
-        placeholder="Movie Title"
-        value={movieTitle}
-        onChange={(evt) => setMovieTitle(evt.target.value)}
-        />
+          <tr>
+            <td>
+              <label htmlFor="movieDescription">Movie Description: </label>
+            </td>
+            <td>
+              <textarea
+              name="movieDescription"
+              placeholder="Movie Description:"
+              value={movieDescription}
+              onChange={(evt) => setMovieDescription(evt.target.value)}
+              />
+            </td>
+          </tr>
 
-        <input
-        type="textarea"
-        placeholder="Movie Description..."
-        />
+          <tr>
+            <td>
+              <label htmlFor="movieGenre">Select Genre: </label>
+            </td>
+            <td>
+              <select 
+                name="movieGenre" 
+                placeholder="--- Genres ---"
+                value={movieGenre}
+                onChange={(evt) => setMovieGenre(evt.target.value)}
+              >
+                {genres.map((genre, i) => {
+                  return (
+                    <option key={i} value={genre.id}>{genre.name}</option>
+                  )
+                })};
+              </select>
+            </td>
+          </tr>
 
+          <tr>
+            <td>
+              <input type="submit" value="Save" />
+            </td>
+            <td>
+              <Link to="/">Cancel</Link>
+            </td>
+          </tr>
+
+
+        </table>
       </form>
+
     </div>
   );
 }
